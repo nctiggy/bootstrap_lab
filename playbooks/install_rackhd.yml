@@ -45,3 +45,33 @@
       - ansible
       - apt-mirror
       - amtterm
+      - make
+      - g++
+      - libkrb5-dev
+      - curl
+  - name: Add Node repo key
+    apt_key:
+      url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+      state: present
+  - name: Add NodeJS repository
+    apt_repository:
+      repo: deb https://deb.nodesource.com/node_4.x xenial main
+      state: present
+      filename: nodesource
+  - name: Add 2nd NodeJS repository
+    apt_repository:
+      repo: deb-src https://deb.nodesource.com/node_4.x xenial main
+      state: present
+      filename: nodesource
+  - name: Install NodeJS 4.x
+    apt:
+      name: nodejs
+      update_cache: yes
+  - name: Create RackHD directory structure
+    file: path=/opt/monorail/rackhd state=directory
+  - name: Install RackHD Services
+    action: npm name={{item}} path=/opt/monorail/rackhd
+    with_items:
+      - on-http
+      - on-syslog
+      - on-taskgraph
