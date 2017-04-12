@@ -1,3 +1,6 @@
+# Ignore ansible retry files
+*.retry
+
 # Logs
 logs
 *.log
