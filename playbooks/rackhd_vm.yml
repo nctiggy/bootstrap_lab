@@ -1,0 +1,34 @@
+---
+- hosts: localhost
+  tasks:
+  - name: Build the RackHD server
+    vsphere_guest:
+      vcenter_hostname: 192.168.0.35
+      username: ubuntu
+      password: Password#1
+      guest: newvm001
+      state: powered_on
+      vm_extra_config:
+        vcpu.hotadd: yes
+        mem.hotadd:  yes
+        notes: This is a test VM
+      vm_disk:
+        disk1:
+          size_gb: 250
+          type: thin
+          datastore: ScaleIO
+      vm_nic:
+        nic1:
+          type: vmxnet3
+          network: VM Network
+          network_type: standard
+      vm_hardware:
+        memory_mb: 4096
+        num_cpus: 2
+        osid: ubuntu64Guest
+        vm_cdrom:
+          type: "iso"
+          iso_path: "temp/ISO/ubuntu-16.04.1-server-amd64.iso"
+      esxi:
+        datacenter: Datacenter
+        hostname: 192.168.0.5
