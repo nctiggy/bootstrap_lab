@@ -3,7 +3,45 @@
   remote_user: ubuntu
   become: yes
   tasks:
-  - name: Add mongo keyserver
+  - name: Add mongo keys
     apt_key:
-      keyserver: keyserver.ubuntu.com
+      keyserver: hkp://keyserver.ubuntu.com:80
       id: 7F0CEB10
+      state: present
+  - name: Add mongo repository
+    apt_repository:
+      repo: deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen
+      state: present
+      filename: mongodb
+  - name: Install MongoDB 2.4.9
+    apt:
+      name: mongodb-10gen=2.4.9
+      update_cache: yes
+  - name: Freeze MongoDB version
+    dpkg_selections:
+      name: mongodb-10gen
+      selection: hold
+  - name: Copy mongodb.service file over to systemd directory
+    copy:
+      src: ./mongodb.service
+      dest: /etc/systemd/system/mongodb.service
+      mode: 0644
+      owner: root
+      group: root
+  - name: Start MongoDB and enable it to run on boot
+    systemd:
+      name: mongodb
+      daemon_reload: yes
+      state: started
+      enabled: yes
+  - name: Install various dependencies
+    action: apt pkg={{item}} state=installed
+    with_items:
+      - rabbitmq-server
+      - snmp
+      - ipmitool
+      - git
+      - unzip
+      - ansible
+      - apt-mirror
+      - amtterm
