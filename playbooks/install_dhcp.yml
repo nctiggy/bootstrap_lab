@@ -1,0 +1,10 @@
+---
+# This playbook just apply debops.dhcpd Role to a target node. 
+- name: Infrastructure Services [DHCP server]
+  hosts: target-node
+
+  vars_files:
+    - vars_dhcpd.yml
+
+  roles:
+     - debops.dhcpd
