@@ -1,5 +1,8 @@
 ---
 
+# Do we need to set the static IP address for this server so rackHD knows how to contact or does rackHD send broadcast request
+# We might need to set up a relay to a diff vlan for instances where nodes on different vlans need to access the dhcp server
+
 dhcpd_mode: 'server'
 dhcpd_ipversion: '4'
 dhcpd_base_packages_map:
@@ -31,17 +34,17 @@ dhcpd_shared_networks:
 dhcpd_subnets_local:
  - subnet: '10.4.44.1'
    netmask: '255.255.254.0'
-   routers: [ '10.4.44.92' ]
+   routers: [ '10.4.44.92', '10.4.44.93' ]
    pools:
      - comment: "ls-web pool"
        range: '10.4.44.200 10.4.44.254'
 
- - subnet: '192.168.'
-   netmask: '255.255.254.0'
-   routers: '10.4.44.93'
-   options: |
-     default-lease-time 300;
-     max-lease-time 7200;
-   pools:
-     - comment: "ls-db pool"
-       range: '10.4.44.150 10.4.44.199'
+# - subnet: '10.4.44.'
+ #  netmask: '255.255.254.0'
+  # routers: '10.4.44.93'
+   #options: |
+    # default-lease-time 300;
+     #max-lease-time 7200;
+   #pools:
+    # - comment: "ls-db pool"
+     #  range: '10.4.44.150 10.4.44.199'
