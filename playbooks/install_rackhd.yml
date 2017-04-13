@@ -49,6 +49,7 @@
       - g++
       - libkrb5-dev
       - curl
+      - open-vm-tools
   - name: Add Node repo key
     apt_key:
       url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key

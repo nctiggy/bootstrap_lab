@@ -1,8 +1,21 @@
 ---
 
+dhcpd_mode: 'server'
+dhcpd_ipversion: '4'
+dhcpd_base_packages_map:
+  'server': [ 'isc-dhcp-server' ]
+dhcpd_server_options: '{{ "-" + dhcpd_ipversion }}'
+
 dhcpd_authoritative: True
-dhcpd_interfaces: [ eth0 ]
-ansible_domain: bulb.int
+dhcpd_log_facility: 'local7'
+dhcpd_interfaces: []
+ansible_domain: bellevuelab.isus.emc.com
+
+dhcpd_lease_time: '24'
+dhcpd_global_default_lease_time: '{{ (((dhcpd_lease_time|int / 2) + 6) * 60 * 60)|round|int }}'
+dhcpd_global_max_lease_time: '{{ (dhcpd_lease_time|int * 60 * 60)|round|int }}'
+
+dhcpd_domain_name: '{{ ansible_domain }}'
 
 # where to ask for DNS Server / dhcpd_dns_servers
 ansible_default_ipv4.address: 192.168.2.1
