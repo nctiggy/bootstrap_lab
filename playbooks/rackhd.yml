@@ -1,0 +1,10 @@
+apps:
+  - script: index.js
+    name: on-taskgraph
+    cwd: /opt/monorail/rackhd/node_modules/on-taskgraph
+  - script: index.js
+    name: on-http
+    cwd: /opt/monorail/rackhd/node_modules/on-http
+  - script: index.js
+    name: on-syslog
+    cwd: /opt/monorail/rackhd/node_modules/on-syslog
