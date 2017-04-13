@@ -18,7 +18,7 @@ dhcpd_global_max_lease_time: '{{ (dhcpd_lease_time|int * 60 * 60)|round|int }}'
 dhcpd_domain_name: '{{ ansible_domain }}'
 
 # where to ask for DNS Server / dhcpd_dns_servers
-ansible_default_ipv4.address: 192.168.2.1
+ansible_default_ipv4.address: localhost
 
 dhcpd_shared_networks:
   - name: 'ls-bulb-net'
@@ -29,19 +29,19 @@ dhcpd_shared_networks:
       max-lease-time 900;
 
 dhcpd_subnets_local:
- - subnet: '192.168.2.0'
-   netmask: '255.255.255.0'
-   routers: [ '192.168.2.1' ]
+ - subnet: '10.4.44.1'
+   netmask: '255.255.254.0'
+   routers: [ '10.4.44.92' ]
    pools:
      - comment: "ls-web pool"
-       range: '192.168.2.100 192.168.2.199'
+       range: '10.4.44.200 10.4.44.254'
 
- - subnet: '192.168.3.0'
-   netmask: '255.255.255.0'
-   routers: '192.168.3.1'
+ - subnet: '192.168.'
+   netmask: '255.255.254.0'
+   routers: '10.4.44.93'
    options: |
      default-lease-time 300;
      max-lease-time 7200;
    pools:
      - comment: "ls-db pool"
-       range: '192.168.3.100 192.168.3.199'
+       range: '10.4.44.150 10.4.44.199'
