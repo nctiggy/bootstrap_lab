@@ -75,3 +75,25 @@
       - on-http
       - on-syslog
       - on-taskgraph
+  - name: Copy config.json to monorail directory
+    copy:
+      src: ./config.json
+      dest: /opt/monorail/config.json
+      mode: 0644
+      owner: root
+      group: root
+  - name: Install pm2 node module
+    npm:
+      name: pm2
+      global: yes
+  - name: Copy rackhd.yml to monorail directory
+    copy:
+      src: ./rackhd.yml
+      dest: /opt/monorail/rackhd.yml
+      mode: 0644
+      owner: root
+      group: root
+  - name: Start the RackHD service
+    command: pm2 start /opt/monorail/rackhd.yml
+  - name: Set the RackHD service to start on boot
+    command: pm2 startup

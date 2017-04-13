@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  include_vars: vars.yml
+  tasks:
+  - name: templating test
+    template:
+      src: ./test.j2
+      dest: test.conf
+
