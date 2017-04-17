@@ -4,7 +4,7 @@
   hosts: target-node
 
   vars_files:
-    - vars_dhcpd.yml
+    - vars_dhcp.yml
 
   roles:
      - debops.dhcpd
