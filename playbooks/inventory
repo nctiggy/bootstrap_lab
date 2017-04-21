@@ -1,6 +1,9 @@
-10.4.44.129
+
 
 [target-node]
-10.4.44.130
+10.4.44.99 ansible_connection=ssh ansibleuser=ubuntudhcp ansible_ssh_pass=password
+
+[debops_all_hosts]
+10.4.44.99 ansible_connection=ssh ansibleuser=ubuntudhcp ansible_ssh_pass=password
 
 
