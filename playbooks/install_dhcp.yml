@@ -2,6 +2,7 @@
 # This playbook just apply debops.dhcpd Role to a target node. 
 - name: Infrastructure Services [DHCP server]
   hosts: target-node
+  user: ubuntudhcp
   become: yes
 
   vars_files:
@@ -9,3 +10,42 @@
 
   roles:
      - debops.dhcpd
+  tasks:
+  - name: Install various dependencies
+    action: apt pkg={{item}} state=installed
+    with_items:
+      - git
+  - name: Add Node repo key
+    apt_key:
+      url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+      state: present
+  - name: Add NodeJS repository
+    apt_repository:
+      repo: deb https://deb.nodesource.com/node_4.x xenial main
+      state: present
+      filename: nodesource
+  - name: Add 2nd NodeJS repository
+    apt_repository:
+      repo: deb-src https://deb.nodesource.com/node_4.x xenial main
+      state: present
+      filename: nodesource
+  - name: Install NodeJS 4.x
+    apt:
+      name: nodejs
+      update_cache: yes
+  - name: Create RackHD directory structure
+    file: path=/opt/monorail/rackhd state=directory
+  - name: Install RackHD Services
+    action: npm name={{item}} path=/opt/monorail/rackhd
+    with_items:
+      - on-dhcp-proxy
+      - on-tftp
+  - name: Copy config.json to monorail directory
+    copy:
+      src: ./config.json
+      dest: /opt/monorail/config.json
+      mode: 0644
+      owner: root
+      group: root
+  - name: Get tftp files
+    script: files_dhcpd.sh

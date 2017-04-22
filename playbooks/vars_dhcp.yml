@@ -23,21 +23,12 @@ dhcpd_domain_name: '{{ ansible_domain }}'
 # where to ask for DNS Server / dhcpd_dns_servers
 ansible_default_ipv4.address: localhost
 
-dhcpd_shared_networks:
-  - name: 'ls-bulb-net'
-    comment: "Remote shared network"
-    subnets: '{{ dhcpd_subnets_local }}'
-    options: |
-      default-lease-time 600;
-      max-lease-time 900;
-
-dhcpd_subnets_local:
- - subnet: '10.4.44.1'
-   netmask: '255.255.254.0'
-   routers: [ '10.4.44.92', '10.4.44.93' ]
+dhcpd_subnets:
+ - subnet: '10.4.44.0'
+   netmask: '255.255.255.0'
+   routers: '10.4.44.1'
    pools:
-     - comment: "ls-web pool"
-       range: '10.4.44.200 10.4.44.254'
+     - range: '10.4.44.121 10.4.44.249'
 
 # - subnet: '10.4.44.'
  #  netmask: '255.255.254.0'

@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: rackhd
   remote_user: ubuntu
   become: yes
   tasks:
@@ -94,6 +94,8 @@
       mode: 0644
       owner: root
       group: root
+  - name: Get tftp files
+    script: files_rackhd.sh
   - name: Start the RackHD service
     command: pm2 start /opt/monorail/rackhd.yml
   - name: Set the RackHD service to start on boot

@@ -2,8 +2,8 @@
     "amqp": "amqp://localhost",
     "apiServerAddress": "10.4.44.129",
     "apiServerPort": 9080,
-    "dhcpGateway": "172.31.128.1",
-    "dhcpProxyBindAddress": "172.31.128.1",
+    "dhcpGateway": "10.4.44.99",
+    "dhcpProxyBindAddress": "10.4.44.99",
     "dhcpProxyBindPort": 4011,
     "dhcpSubnetMask": "255.255.255.0",
     "httpEndpoints": [
@@ -51,7 +51,7 @@
     "statsd": "127.0.0.1:8125",
     "syslogBindAddress": "10.4.44.129",
     "syslogBindPort": 514,
-    "tftpBindAddress": "172.31.128.1",
+    "tftpBindAddress": "10.4.44.99",
     "tftpBindPort": 69,
     "tftpRoot": "./static/tftp",
     "minLogLevel": 2
