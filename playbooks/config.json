@@ -1,5 +1,5 @@
 {
-    "amqp": "amqp://localhost",
+    "amqp": "amqp://10.4.44.129",
     "apiServerAddress": "10.4.44.129",
     "apiServerPort": 9080,
     "dhcpGateway": "192.168.10.99",
@@ -46,7 +46,7 @@
     "authPasswordSalt": "zlxkgxjvcFwm0M8sWaGojh25qNYO8tuNWUMN4xKPH93PidwkCAvaX2JItLA3p7BSCWIzkw4GwWuezoMvKf3UXg==",
     "authTokenSecret": "RackHDRocks!",
     "authTokenExpireIn": 86400,
-    "mongo": "mongodb://localhost/pxe",
+    "mongo": "mongodb://10.4.44.129/pxe",
     "sharedKey": "qxfO2D3tIJsZACu7UA6Fbw0avowo8r79ALzn+WeuC8M=",
     "statsd": "127.0.0.1:8125",
     "syslogBindAddress": "10.4.44.129",
