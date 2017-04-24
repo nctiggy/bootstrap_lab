@@ -33,6 +33,8 @@ dhcpd_subnets:
    netmask: '255.255.255.0'
    pools:
      - range: '192.168.10.100 192.168.10.249'
+       options: |
+         option vendor-class-identifier "PXEClient";
 
 # - subnet: '10.4.44.'
  #  netmask: '255.255.254.0'

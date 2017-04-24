@@ -49,3 +49,18 @@
       group: root
   - name: Get tftp files
     script: files_dhcpd.sh
+  - name: Install pm2 node module
+    npm:
+      name: pm2
+      global: yes
+  - name: Copy dhcpd.yml to monorail directory
+    copy:
+      src: ./dhcpd.yml
+      dest: /opt/monorail/dhcpd.yml
+      mode: 0644
+      owner: root
+      group: root
+  - name: Start the RackHD service
+    command: pm2 start /opt/monorail/dhcpd.yml
+  - name: Set the RackHD service to start on boot
+    command: pm2 startup

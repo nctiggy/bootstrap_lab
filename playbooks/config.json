@@ -2,8 +2,8 @@
     "amqp": "amqp://localhost",
     "apiServerAddress": "10.4.44.129",
     "apiServerPort": 9080,
-    "dhcpGateway": "10.4.44.99",
-    "dhcpProxyBindAddress": "10.4.44.99",
+    "dhcpGateway": "192.168.10.99",
+    "dhcpProxyBindAddress": "192.168.10.99",
     "dhcpProxyBindPort": 4011,
     "dhcpSubnetMask": "255.255.255.0",
     "httpEndpoints": [
@@ -24,7 +24,7 @@
             "routers": "northbound-api-router"
         },
         {
-            "address": "0.0.0.0",
+            "address": "192.168.10.100",
             "port": 9080,
             "httpsEnabled": false,
             "proxiesEnabled": true,
@@ -51,7 +51,7 @@
     "statsd": "127.0.0.1:8125",
     "syslogBindAddress": "10.4.44.129",
     "syslogBindPort": 514,
-    "tftpBindAddress": "10.4.44.99",
+    "tftpBindAddress": "192.168.10.99",
     "tftpBindPort": 69,
     "tftpRoot": "./static/tftp",
     "minLogLevel": 2
