@@ -15,6 +15,12 @@
     action: apt pkg={{item}} state=installed
     with_items:
       - git
+      - make
+      - g++
+      - libkrb5-dev
+      - curl
+      - open-vm-tools
+      - unzip
   - name: Add Node repo key
     apt_key:
       url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
