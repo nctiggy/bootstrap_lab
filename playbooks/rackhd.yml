@@ -8,3 +8,9 @@ apps:
   - script: index.js
     name: on-syslog
     cwd: /opt/monorail/rackhd/node_modules/on-syslog
+  - script: index.js
+    name: on-tftp
+    cwd: /opt/monorail/rackhd/node_modules/on-tftp
+  - script: index.js
+    name: on-dhcp-proxy
+    cwd: /opt/monorail/rackhd/node_modules/on-dhcp-proxy

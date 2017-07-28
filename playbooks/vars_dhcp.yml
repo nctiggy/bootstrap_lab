@@ -12,7 +12,7 @@ dhcpd_server_options: '{{ "-" + dhcpd_ipversion }}'
 dhcpd_authoritative: True
 dhcpd_log_facility: 'local7'
 dhcpd_interfaces: []
-ansible_domain: bellevuelab.isus.emc.com
+ansible_domain: paclabs.io
 
 dhcpd_lease_time: '24'
 dhcpd_global_default_lease_time: '{{ (((dhcpd_lease_time|int / 2) + 6) * 60 * 60)|round|int }}'
@@ -28,13 +28,7 @@ dhcpd_subnets:
    netmask: '255.255.255.0'
    routers: '10.4.44.1'
    pools:
-     - range: '10.4.44.121 10.4.44.249'
- - subnet: '192.168.10.0'
-   netmask: '255.255.255.0'
-   pools:
-     - range: '192.168.10.100 192.168.10.249'
-       options: |
-         option vendor-class-identifier "PXEClient";
+     - range: '10.4.44.150 10.4.44.249'
 
 # - subnet: '10.4.44.'
  #  netmask: '255.255.254.0'

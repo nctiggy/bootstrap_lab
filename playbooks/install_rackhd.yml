@@ -39,6 +39,7 @@
     with_items:
       - rabbitmq-server
       - snmp
+      - isc-dhcp-server
       - ipmitool
       - git
       - unzip
@@ -54,6 +55,7 @@
     apt_key:
       url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
       state: present
+      validate_certs: no
   - name: Add NodeJS repository
     apt_repository:
       repo: deb https://deb.nodesource.com/node_4.x xenial main
@@ -76,6 +78,8 @@
       - on-http
       - on-syslog
       - on-taskgraph
+      - on-dhcp-proxy
+      - on-tftp
   - name: Copy config.json to monorail directory
     copy:
       src: ./config.json
